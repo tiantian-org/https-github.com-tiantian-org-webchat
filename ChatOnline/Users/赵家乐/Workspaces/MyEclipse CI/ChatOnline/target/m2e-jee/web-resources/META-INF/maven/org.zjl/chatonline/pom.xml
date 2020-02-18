@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.zjl</groupId>
+  <artifactId>chatonline</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+   <packaging>war</packaging>
+  <!-- 设置父级元素 -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.18.RELEASE</version>
+  </parent>
+  <!-- 设定版本 -->
+  <properties>
+    <java.version>1.8</java.version>
+    <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+    <thymeleaf-layout-dialect.version>2.0.4</thymeleaf-layout-dialect.version>
+  </properties>
+  <dependencies>
+    <!-- redis启动器 -->
+    <dependency>
+       <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-starter-data-redis</artifactId>
+	   
+    </dependency>
+    <!-- 启动器 44种  jsp-->
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+    <!-- 热部署启动器 -->
+    <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-devtools</artifactId>
+         <optional>true</optional>
+         <scope>true</scope>
+     </dependency>
+    <!-- thymeleaf启动器 -->
+    <dependency>
+   		<groupId>org.springframework.boot</groupId> 	
+   		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+ 	</dependency>
+ 	<!-- mybatis的启动器 -->
+ 	<dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+ 	           <!-- 导入Mysql数据库链接jar包 -->  
+        <dependency>  
+            <groupId>mysql</groupId>  
+            <artifactId>mysql-connector-java</artifactId>  
+            <version>5.1.36</version>  
+        </dependency>  
+        <!-- 上传组件包 -->  
+        <dependency>  
+            <groupId>commons-fileupload</groupId>  
+            <artifactId>commons-fileupload</artifactId>  
+            <version>1.3.1</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>commons-io</groupId>  
+            <artifactId>commons-io</artifactId>  
+            <version>2.4</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>commons-codec</groupId>  
+            <artifactId>commons-codec</artifactId>  
+            <version>1.9</version>  
+        </dependency>  
+    <!-- 加载ojdbc14的依赖 -->
+    <dependency>
+    	<groupId>com.oracle</groupId>
+    	<artifactId>ojdbc14</artifactId>
+    	<version>10</version>
+    </dependency>
+    <!-- dbcp数据源 -->
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+    </dependency>
+     <dependency>  
+            <groupId>mysql</groupId>  
+            <artifactId>mysql-connector-java</artifactId>  
+            <version>5.1.36</version>  
+        </dependency>  
+  
+  	<!-- websocket -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-websocket</artifactId>
+	</dependency>
+	<!-- 工具包 -->
+	<dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-lang3</artifactId>
+  <version>3.8.1</version>
+</dependency>
+  </dependencies>
+  
+ 
+  <build>
+		<plugins>
+			<!-- 热部署插件 -->
+			<plugin>                
+			    <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+			    <configuration>
+			      <source>${java.version}</source> 
+			      <target>${java.version}</target> 
+			      <encoding>${project.build.sourceEncoding}</encoding>
+			      <fork>true</fork>
+			   </configuration>
+			</plugin>
+			 <!-- 让当前工程可以变成可执行jar包 -->
+			<plugin>                
+			   <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                  <fork>true</fork>
+                  
+                </configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

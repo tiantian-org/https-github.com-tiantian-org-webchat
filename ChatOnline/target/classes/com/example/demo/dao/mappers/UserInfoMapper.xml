@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.mappers.UserInfoMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.demo.dao.userInfo.model.UserInfo">
+    <id column="U_ID" jdbcType="INTEGER" property="uId"/>
+    <result column="U_LoginID" jdbcType="LONGVARCHAR" property="uLoginID"/>
+    <result column="U_NickName" jdbcType="LONGVARCHAR" property="uNickName"/>
+    <result column="U_PassWord" jdbcType="LONGVARCHAR" property="uPassWord"/>
+    <result column="U_SignaTure" jdbcType="LONGVARCHAR" property="uSignaTure"/>
+    <result column="U_Sex" jdbcType="BIT" property="uSex"/>
+    <result column="U_Birthday" jdbcType="TIMESTAMP" property="uBirthday"/>
+    <result column="U_Telephone" jdbcType="LONGVARCHAR" property="uTelephone"/>
+    <result column="U_Name" jdbcType="LONGVARCHAR" property="uName"/>
+    <result column="U_Email" jdbcType="LONGVARCHAR" property="uEmail"/>
+    <result column="U_Intro" jdbcType="LONGVARCHAR" property="uIntro"/>
+    <result column="U_HeadPortrait" jdbcType="LONGVARCHAR" property="uHeadPortrait"/>
+    <result column="U_ShengXiao" jdbcType="LONGVARCHAR" property="uShengXiao"/>
+    <result column="U_Age" jdbcType="INTEGER" property="uAge"/>
+    <result column="U_Constellation" jdbcType="LONGVARCHAR" property="uConstellation"/>
+    <result column="U_BloodType" jdbcType="LONGVARCHAR" property="uBloodType"/>
+    <result column="U_SchoolTag" jdbcType="LONGVARCHAR" property="uSchoolTag"/>
+    <result column="U_Certno" jdbcType="INTEGER" property="uCertno"/>
+    <result column="U_Vocation" jdbcType="LONGVARCHAR" property="uVocation"/>
+    <result column="U_NationID" jdbcType="INTEGER" property="uNationID"/>
+    <result column="U_FriendshipPolicyID" jdbcType="INTEGER" property="uFriendshipPolicyID"/>
+    <result column="U_UserState" jdbcType="LONGVARCHAR" property="uUserState"/>
+    <result column="U_FriendPolicyQuestion" jdbcType="LONGVARCHAR" property="uFriendPolicyQuestion"/>
+    <result column="U_FriendPolicyAnswer" jdbcType="LONGVARCHAR" property="uFriendPolicyAnswer"/>
+    <result column="U_FriendPolicyPassword" jdbcType="LONGVARCHAR" property="uFriendPolicyPassword"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                      #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                      #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `U_ID`, `U_LoginID`, `U_NickName`, `U_PassWord`, `U_SignaTure`, `U_Sex`, `U_Birthday`, `U_Telephone`, `U_Name`, `U_Email`, `U_Intro`, `U_HeadPortrait`, `U_ShengXiao`, `U_Age`, `U_Constellation`, `U_BloodType`, `U_SchoolTag`, `U_Certno`, `U_Vocation`, `U_NationID`, `U_FriendshipPolicyID`, `U_UserState`, `U_FriendPolicyQuestion`, `U_FriendPolicyAnswer`, `U_FriendPolicyPassword`
+  </sql>
+  <select id="selectByExample" parameterType="com.example.demo.dao.userInfo.model.UserInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from `user_info`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from `user_info`
+    where `U_ID` = #{uId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `user_info`
+    where `U_ID` = #{uId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.demo.dao.userInfo.model.UserInfoExample">
+    delete from `user_info`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.dao.userInfo.model.UserInfo">
+    insert into `user_info` (
+      `U_ID`, 
+      `U_LoginID`, 
+      `U_NickName`, 
+      `U_PassWord`, 
+      `U_SignaTure`, 
+      `U_Sex`, 
+      `U_Birthday`, 
+      `U_Telephone`, 
+      `U_Name`, 
+      `U_Email`, 
+      `U_Intro`, 
+      `U_HeadPortrait`, 
+      `U_ShengXiao`, 
+      `U_Age`, 
+      `U_Constellation`, 
+      `U_BloodType`, 
+      `U_SchoolTag`, 
+      `U_Certno`, 
+      `U_Vocation`, 
+      `U_NationID`, 
+      `U_FriendshipPolicyID`, 
+      `U_UserState`, 
+      `U_FriendPolicyQuestion`, 
+      `U_FriendPolicyAnswer`, 
+      `U_FriendPolicyPassword`
+    )
+    values (
+      #{uId,jdbcType=INTEGER}, 
+      #{uLoginID,jdbcType=LONGVARCHAR}, 
+      #{uNickName,jdbcType=LONGVARCHAR}, 
+      #{uPassWord,jdbcType=LONGVARCHAR}, 
+      #{uSignaTure,jdbcType=LONGVARCHAR}, 
+      #{uSex,jdbcType=BIT}, 
+      #{uBirthday,jdbcType=TIMESTAMP}, 
+      #{uTelephone,jdbcType=LONGVARCHAR}, 
+      #{uName,jdbcType=LONGVARCHAR}, 
+      #{uEmail,jdbcType=LONGVARCHAR}, 
+      #{uIntro,jdbcType=LONGVARCHAR}, 
+      #{uHeadPortrait,jdbcType=LONGVARCHAR}, 
+      #{uShengXiao,jdbcType=LONGVARCHAR}, 
+      #{uAge,jdbcType=INTEGER}, 
+      #{uConstellation,jdbcType=LONGVARCHAR}, 
+      #{uBloodType,jdbcType=LONGVARCHAR}, 
+      #{uSchoolTag,jdbcType=LONGVARCHAR}, 
+      #{uCertno,jdbcType=INTEGER}, 
+      #{uVocation,jdbcType=LONGVARCHAR}, 
+      #{uNationID,jdbcType=INTEGER}, 
+      #{uFriendshipPolicyID,jdbcType=INTEGER}, 
+      #{uUserState,jdbcType=LONGVARCHAR}, 
+      #{uFriendPolicyQuestion,jdbcType=LONGVARCHAR}, 
+      #{uFriendPolicyAnswer,jdbcType=LONGVARCHAR}, 
+      #{uFriendPolicyPassword,jdbcType=LONGVARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.dao.userInfo.model.UserInfo">
+    insert into `user_info`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        `U_ID`,
+      </if>
+      <if test="uLoginID != null">
+        `U_LoginID`,
+      </if>
+      <if test="uNickName != null">
+        `U_NickName`,
+      </if>
+      <if test="uPassWord != null">
+        `U_PassWord`,
+      </if>
+      <if test="uSignaTure != null">
+        `U_SignaTure`,
+      </if>
+      <if test="uSex != null">
+        `U_Sex`,
+      </if>
+      <if test="uBirthday != null">
+        `U_Birthday`,
+      </if>
+      <if test="uTelephone != null">
+        `U_Telephone`,
+      </if>
+      <if test="uName != null">
+        `U_Name`,
+      </if>
+      <if test="uEmail != null">
+        `U_Email`,
+      </if>
+      <if test="uIntro != null">
+        `U_Intro`,
+      </if>
+      <if test="uHeadPortrait != null">
+        `U_HeadPortrait`,
+      </if>
+      <if test="uShengXiao != null">
+        `U_ShengXiao`,
+      </if>
+      <if test="uAge != null">
+        `U_Age`,
+      </if>
+      <if test="uConstellation != null">
+        `U_Constellation`,
+      </if>
+      <if test="uBloodType != null">
+        `U_BloodType`,
+      </if>
+      <if test="uSchoolTag != null">
+        `U_SchoolTag`,
+      </if>
+      <if test="uCertno != null">
+        `U_Certno`,
+      </if>
+      <if test="uVocation != null">
+        `U_Vocation`,
+      </if>
+      <if test="uNationID != null">
+        `U_NationID`,
+      </if>
+      <if test="uFriendshipPolicyID != null">
+        `U_FriendshipPolicyID`,
+      </if>
+      <if test="uUserState != null">
+        `U_UserState`,
+      </if>
+      <if test="uFriendPolicyQuestion != null">
+        `U_FriendPolicyQuestion`,
+      </if>
+      <if test="uFriendPolicyAnswer != null">
+        `U_FriendPolicyAnswer`,
+      </if>
+      <if test="uFriendPolicyPassword != null">
+        `U_FriendPolicyPassword`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uLoginID != null">
+        #{uLoginID,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uNickName != null">
+        #{uNickName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uPassWord != null">
+        #{uPassWord,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uSignaTure != null">
+        #{uSignaTure,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=BIT},
+      </if>
+      <if test="uBirthday != null">
+        #{uBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTelephone != null">
+        #{uTelephone,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uEmail != null">
+        #{uEmail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uIntro != null">
+        #{uIntro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uHeadPortrait != null">
+        #{uHeadPortrait,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uShengXiao != null">
+        #{uShengXiao,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uAge != null">
+        #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uConstellation != null">
+        #{uConstellation,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uBloodType != null">
+        #{uBloodType,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uSchoolTag != null">
+        #{uSchoolTag,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uCertno != null">
+        #{uCertno,jdbcType=INTEGER},
+      </if>
+      <if test="uVocation != null">
+        #{uVocation,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uNationID != null">
+        #{uNationID,jdbcType=INTEGER},
+      </if>
+      <if test="uFriendshipPolicyID != null">
+        #{uFriendshipPolicyID,jdbcType=INTEGER},
+      </if>
+      <if test="uUserState != null">
+        #{uUserState,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uFriendPolicyQuestion != null">
+        #{uFriendPolicyQuestion,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uFriendPolicyAnswer != null">
+        #{uFriendPolicyAnswer,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="uFriendPolicyPassword != null">
+        #{uFriendPolicyPassword,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.demo.dao.userInfo.model.UserInfoExample" resultType="java.lang.Integer">
+    select count(*) from `user_info`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update `user_info`
+    <set>
+        `U_ID` = #{record.uId,jdbcType=INTEGER},
+        `U_LoginID` = #{record.uLoginID,jdbcType=LONGVARCHAR},
+        `U_NickName` = #{record.uNickName,jdbcType=LONGVARCHAR},
+        `U_PassWord` = #{record.uPassWord,jdbcType=LONGVARCHAR},
+        `U_SignaTure` = #{record.uSignaTure,jdbcType=LONGVARCHAR},
+        `U_Sex` = #{record.uSex,jdbcType=BIT},
+        `U_Birthday` = #{record.uBirthday,jdbcType=TIMESTAMP},
+        `U_Telephone` = #{record.uTelephone,jdbcType=LONGVARCHAR},
+        `U_Name` = #{record.uName,jdbcType=LONGVARCHAR},
+        `U_Email` = #{record.uEmail,jdbcType=LONGVARCHAR},
+        `U_Intro` = #{record.uIntro,jdbcType=LONGVARCHAR},
+        `U_HeadPortrait` = #{record.uHeadPortrait,jdbcType=LONGVARCHAR},
+        `U_ShengXiao` = #{record.uShengXiao,jdbcType=LONGVARCHAR},
+        `U_Age` = #{record.uAge,jdbcType=INTEGER},
+        `U_Constellation` = #{record.uConstellation,jdbcType=LONGVARCHAR},
+        `U_BloodType` = #{record.uBloodType,jdbcType=LONGVARCHAR},
+        `U_SchoolTag` = #{record.uSchoolTag,jdbcType=LONGVARCHAR},
+        `U_Certno` = #{record.uCertno,jdbcType=INTEGER},
+        `U_Vocation` = #{record.uVocation,jdbcType=LONGVARCHAR},
+        `U_NationID` = #{record.uNationID,jdbcType=INTEGER},
+        `U_FriendshipPolicyID` = #{record.uFriendshipPolicyID,jdbcType=INTEGER},
+        `U_UserState` = #{record.uUserState,jdbcType=LONGVARCHAR},
+        `U_FriendPolicyQuestion` = #{record.uFriendPolicyQuestion,jdbcType=LONGVARCHAR},
+        `U_FriendPolicyAnswer` = #{record.uFriendPolicyAnswer,jdbcType=LONGVARCHAR},
+        `U_FriendPolicyPassword` = #{record.uFriendPolicyPassword,jdbcType=LONGVARCHAR},
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update `user_info`
+    set `U_ID` = #{record.uId,jdbcType=INTEGER}, 
+`U_LoginID` = #{record.uLoginID,jdbcType=LONGVARCHAR}, 
+`U_NickName` = #{record.uNickName,jdbcType=LONGVARCHAR}, 
+`U_PassWord` = #{record.uPassWord,jdbcType=LONGVARCHAR}, 
+`U_SignaTure` = #{record.uSignaTure,jdbcType=LONGVARCHAR}, 
+`U_Sex` = #{record.uSex,jdbcType=BIT}, 
+`U_Birthday` = #{record.uBirthday,jdbcType=TIMESTAMP}, 
+`U_Telephone` = #{record.uTelephone,jdbcType=LONGVARCHAR}, 
+`U_Name` = #{record.uName,jdbcType=LONGVARCHAR}, 
+`U_Email` = #{record.uEmail,jdbcType=LONGVARCHAR}, 
+`U_Intro` = #{record.uIntro,jdbcType=LONGVARCHAR}, 
+`U_HeadPortrait` = #{record.uHeadPortrait,jdbcType=LONGVARCHAR}, 
+`U_ShengXiao` = #{record.uShengXiao,jdbcType=LONGVARCHAR}, 
+`U_Age` = #{record.uAge,jdbcType=INTEGER}, 
+`U_Constellation` = #{record.uConstellation,jdbcType=LONGVARCHAR}, 
+`U_BloodType` = #{record.uBloodType,jdbcType=LONGVARCHAR}, 
+`U_SchoolTag` = #{record.uSchoolTag,jdbcType=LONGVARCHAR}, 
+`U_Certno` = #{record.uCertno,jdbcType=INTEGER}, 
+`U_Vocation` = #{record.uVocation,jdbcType=LONGVARCHAR}, 
+`U_NationID` = #{record.uNationID,jdbcType=INTEGER}, 
+`U_FriendshipPolicyID` = #{record.uFriendshipPolicyID,jdbcType=INTEGER}, 
+`U_UserState` = #{record.uUserState,jdbcType=LONGVARCHAR}, 
+`U_FriendPolicyQuestion` = #{record.uFriendPolicyQuestion,jdbcType=LONGVARCHAR}, 
+`U_FriendPolicyAnswer` = #{record.uFriendPolicyAnswer,jdbcType=LONGVARCHAR}, 
+`U_FriendPolicyPassword` = #{record.uFriendPolicyPassword,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause"/>
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.dao.userInfo.model.UserInfo">
+    update `user_info`
+    <set>
+        <if test="uId != null">
+          `U_ID` = #{uId,jdbcType=INTEGER},
+        </if>
+        <if test="uLoginID != null">
+          `U_LoginID` = #{uLoginID,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uNickName != null">
+          `U_NickName` = #{uNickName,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uPassWord != null">
+          `U_PassWord` = #{uPassWord,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uSignaTure != null">
+          `U_SignaTure` = #{uSignaTure,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uSex != null">
+          `U_Sex` = #{uSex,jdbcType=BIT},
+        </if>
+        <if test="uBirthday != null">
+          `U_Birthday` = #{uBirthday,jdbcType=TIMESTAMP},
+        </if>
+        <if test="uTelephone != null">
+          `U_Telephone` = #{uTelephone,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uName != null">
+          `U_Name` = #{uName,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uEmail != null">
+          `U_Email` = #{uEmail,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uIntro != null">
+          `U_Intro` = #{uIntro,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uHeadPortrait != null">
+          `U_HeadPortrait` = #{uHeadPortrait,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uShengXiao != null">
+          `U_ShengXiao` = #{uShengXiao,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uAge != null">
+          `U_Age` = #{uAge,jdbcType=INTEGER},
+        </if>
+        <if test="uConstellation != null">
+          `U_Constellation` = #{uConstellation,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uBloodType != null">
+          `U_BloodType` = #{uBloodType,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uSchoolTag != null">
+          `U_SchoolTag` = #{uSchoolTag,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uCertno != null">
+          `U_Certno` = #{uCertno,jdbcType=INTEGER},
+        </if>
+        <if test="uVocation != null">
+          `U_Vocation` = #{uVocation,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uNationID != null">
+          `U_NationID` = #{uNationID,jdbcType=INTEGER},
+        </if>
+        <if test="uFriendshipPolicyID != null">
+          `U_FriendshipPolicyID` = #{uFriendshipPolicyID,jdbcType=INTEGER},
+        </if>
+        <if test="uUserState != null">
+          `U_UserState` = #{uUserState,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uFriendPolicyQuestion != null">
+          `U_FriendPolicyQuestion` = #{uFriendPolicyQuestion,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uFriendPolicyAnswer != null">
+          `U_FriendPolicyAnswer` = #{uFriendPolicyAnswer,jdbcType=LONGVARCHAR},
+        </if>
+        <if test="uFriendPolicyPassword != null">
+          `U_FriendPolicyPassword` = #{uFriendPolicyPassword,jdbcType=LONGVARCHAR},
+        </if>
+    </set>
+    where `U_ID` = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.dao.userInfo.model.UserInfo">
+    update `user_info`
+    set
+        `U_ID` = #{uId,jdbcType=INTEGER}, 
+        `U_LoginID` = #{uLoginID,jdbcType=LONGVARCHAR}, 
+        `U_NickName` = #{uNickName,jdbcType=LONGVARCHAR}, 
+        `U_PassWord` = #{uPassWord,jdbcType=LONGVARCHAR}, 
+        `U_SignaTure` = #{uSignaTure,jdbcType=LONGVARCHAR}, 
+        `U_Sex` = #{uSex,jdbcType=BIT}, 
+        `U_Birthday` = #{uBirthday,jdbcType=TIMESTAMP}, 
+        `U_Telephone` = #{uTelephone,jdbcType=LONGVARCHAR}, 
+        `U_Name` = #{uName,jdbcType=LONGVARCHAR}, 
+        `U_Email` = #{uEmail,jdbcType=LONGVARCHAR}, 
+        `U_Intro` = #{uIntro,jdbcType=LONGVARCHAR}, 
+        `U_HeadPortrait` = #{uHeadPortrait,jdbcType=LONGVARCHAR}, 
+        `U_ShengXiao` = #{uShengXiao,jdbcType=LONGVARCHAR}, 
+        `U_Age` = #{uAge,jdbcType=INTEGER}, 
+        `U_Constellation` = #{uConstellation,jdbcType=LONGVARCHAR}, 
+        `U_BloodType` = #{uBloodType,jdbcType=LONGVARCHAR}, 
+        `U_SchoolTag` = #{uSchoolTag,jdbcType=LONGVARCHAR}, 
+        `U_Certno` = #{uCertno,jdbcType=INTEGER}, 
+        `U_Vocation` = #{uVocation,jdbcType=LONGVARCHAR}, 
+        `U_NationID` = #{uNationID,jdbcType=INTEGER}, 
+        `U_FriendshipPolicyID` = #{uFriendshipPolicyID,jdbcType=INTEGER}, 
+        `U_UserState` = #{uUserState,jdbcType=LONGVARCHAR}, 
+        `U_FriendPolicyQuestion` = #{uFriendPolicyQuestion,jdbcType=LONGVARCHAR}, 
+        `U_FriendPolicyAnswer` = #{uFriendPolicyAnswer,jdbcType=LONGVARCHAR}, 
+        `U_FriendPolicyPassword` = #{uFriendPolicyPassword,jdbcType=LONGVARCHAR}
+    where `U_ID` = #{uId,jdbcType=INTEGER}
+  </update>
+  
+    <select id="selectByloginMessage" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from `user_info`
+    where `U_LoginID` = #{loginMessage,jdbcType=LONGVARCHAR}
+     or `U_Telephone` = #{loginMessage,jdbcType=LONGVARCHAR}
+     or `U_Email` = #{loginMessage,jdbcType=LONGVARCHAR}
+  </select>
+</mapper>

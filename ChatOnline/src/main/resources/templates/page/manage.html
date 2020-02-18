@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>guanli.html</title>
+	       <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+ <div class="row" style="margin: 20px;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="text-muted bootstrap-admin-box-title">Hover Table</div>
+                            </div>
+                            <div class="bootstrap-admin-panel-content" th:each="entry:${map}">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th  th:text="${entry.key}"></th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list:${entry.value}">
+                                            <td th:text="${list}"></td>
+                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+  </body>
+</html>
