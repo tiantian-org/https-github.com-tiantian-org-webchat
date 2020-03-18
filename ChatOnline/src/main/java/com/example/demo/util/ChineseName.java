@@ -63,5 +63,11 @@ public class ChineseName {
 		}
 			return str;
 	}
-
+	public static void main(String[] args) throws InterruptedException {
+		ChineseName c=new ChineseName();
+		while(true) {
+			System.out.println(c.randomName());
+			Thread.sleep(500);
+		}
+	}
 }
